@@ -58,3 +58,28 @@ Use GitHub Copilot to refactor the code for this game to add more advanced featu
 - The game should be responsive and work well on both desktop and mobile devices.
 - UI colors should be visually appealing and accessible.
 - Completed and correct puzzles should display a congratulatory message with the time taken and hints used and ask for the user's name for Top 10 times.
+
+## Tests
+
+Run the tests from the `starter` directory in PowerShell:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest .\tests -v
+```
+
+The Sudoku logic tests cover valid solutions, clue counts by difficulty, and puzzle uniqueness.
+
+## Optional Challenges
+
+The game also includes optional number tracking, pencil-note mode, and an animated
+backtracking solver. Reusable project prompt templates are stored in `prompts.json`.
+The interface includes accessibility improvements such as a skip link, labeled
+controls, keyboard-visible focus, status announcements, and reduced-motion support.
+These improvements are not a formal WCAG 2.1 AA audit or certification.
+
+To test the solver, start a puzzle, select **Visual Solver** above the board, and use
+**Play Solver**, **Step**, **Pause Solver**, and **Reset Solver**. Use **Back to Sudoku**
+to return to the same puzzle; its timer and entries are preserved. To test pencil
+notes, enable **Pencil Mode** above the board, focus an empty cell, and type digits;
+the note appears in the cell and typing that digit again removes it. The Number
+Tracker counts each digit and its buttons highlight matching board cells.

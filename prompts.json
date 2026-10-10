@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "description": "Reusable Copilot prompt templates for the Sudoku project.",
+  "prompts": [
+    {
+      "id": "understand-sudoku-feature",
+      "title": "Understand a feature before changing it",
+      "template": "Trace how the {feature} currently works in this Flask Sudoku project. Identify the relevant files, data flow, edge cases, and tests. Do not modify files yet. Summarize the behavior using evidence from the code."
+    },
+    {
+      "id": "implement-sudoku-feature",
+      "title": "Implement a focused Sudoku feature",
+      "template": "Implement {feature} in this Sudoku project. First inspect existing patterns and tests, then make the smallest complete change. Preserve current behavior, handle errors visibly, add or update focused tests, and run the relevant tests. Summarize changed files and verification."
+    },
+    {
+      "id": "debug-failing-test",
+      "title": "Debug a failing test",
+      "template": "Investigate this failure without assuming the cause: {failure}. Reproduce it with the smallest relevant test, trace the actual values and code path, fix the underlying cause, and rerun the focused test plus the related suite."
+    },
+    {
+      "id": "accessibility-review",
+      "title": "Review a page for accessibility",
+      "template": "Review {page_or_component} for practical WCAG 2.1 AA accessibility issues. Check semantic structure, keyboard access, focus visibility, labels, status announcements, color contrast, responsive zoom/reflow, and reduced motion. Report concrete issues with locations and propose measurable fixes. Do not claim certification."
+    },
+    {
+      "id": "add-regression-tests",
+      "title": "Add regression tests",
+      "template": "For the behavior {behavior}, inspect the implementation and existing test style, then add tests for the normal case, invalid input, and important edge cases. Run the focused tests and report exactly what passed."
+    }
+  ]
+}
