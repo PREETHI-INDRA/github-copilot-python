@@ -5,6 +5,8 @@ Use this simple Sudoku game as a starting point to practice your skills with Git
 ## Getting Started
 
 Follow these instructions to get a copy of the project up and running on your local machine.
+For gameplay instructions and Windows run/test commands, see
+[instructions.md](./instructions.md).
 
 ### Dependencies
 
@@ -77,9 +79,20 @@ The interface includes accessibility improvements such as a skip link, labeled
 controls, keyboard-visible focus, status announcements, and reduced-motion support.
 These improvements are not a formal WCAG 2.1 AA audit or certification.
 
+The game board and Visual Solver alternate the 3×3 region colors in both light
+and dark themes. Switching themes does not change the board dimensions.
+
 To test the solver, start a puzzle, select **Visual Solver** above the board, and use
 **Play Solver**, **Step**, **Pause Solver**, and **Reset Solver**. Use **Back to Sudoku**
 to return to the same puzzle; its timer and entries are preserved. To test pencil
 notes, enable **Pencil Mode** above the board, focus an empty cell, and type digits;
 the note appears in the cell and typing that digit again removes it. The Number
 Tracker counts each digit and its buttons highlight matching board cells.
+
+### Copilot suggestion review example
+
+During the Visual Solver styling work, the first suggested change for alternating
+region colors looked correct in the stylesheet, but browser inspection showed
+solver-cell styling could obscure those colors. The styling was revised to retain
+each cell's base or alternating fill beneath solver highlights, then checked in
+both themes to confirm the region pattern and board geometry remained consistent.

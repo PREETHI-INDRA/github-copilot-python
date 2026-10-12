@@ -27,6 +27,7 @@ body {
     --border-color: #d6deeb;
     --strong-border: #586b91;
     --cell-background: #fff;
+    --alternate-box-background: #eef4ff;
     --prefilled-background: #edf1f7;
     --prefilled-text: #2e3b53;
     --focus-background: #e6efff;
@@ -81,6 +82,7 @@ body.dark-mode {
     --border-color: #475569;
     --strong-border: #cbd5e1;
     --cell-background: #111827;
+    --alternate-box-background: #1b2940;
     --prefilled-background: #334155;
     --prefilled-text: #f1f5f9;
     --focus-background: #164e63;
@@ -229,6 +231,49 @@ input:focus-visible {
     transform: translate(-50%, 0);
     opacity: 1;
     visibility: visible;
+}
+
+.action-controls .tooltip-text {
+    right: 0;
+    left: auto;
+    transform: translateY(-4px);
+}
+
+.action-controls .tooltip-button:hover .tooltip-text,
+.action-controls .tooltip-button:focus-visible .tooltip-text {
+    transform: translateY(0);
+}
+
+.side-controls:not(.action-controls) .tooltip-text {
+    right: auto;
+    left: 0;
+    transform: translateY(-4px);
+}
+
+.side-controls:not(.action-controls) .tooltip-button:hover .tooltip-text,
+.side-controls:not(.action-controls) .tooltip-button:focus-visible .tooltip-text {
+    transform: translateY(0);
+}
+
+#number-tracker-buttons .number-tracker-button:nth-child(-n+3) .tooltip-text {
+    left: 0;
+    transform: translateY(-4px);
+}
+
+#number-tracker-buttons .number-tracker-button:nth-child(-n+3):hover .tooltip-text,
+#number-tracker-buttons .number-tracker-button:nth-child(-n+3):focus-visible .tooltip-text {
+    transform: translateY(0);
+}
+
+#number-tracker-buttons .number-tracker-button:nth-child(n+7) .tooltip-text {
+    right: 0;
+    left: auto;
+    transform: translateY(-4px);
+}
+
+#number-tracker-buttons .number-tracker-button:nth-child(n+7):hover .tooltip-text,
+#number-tracker-buttons .number-tracker-button:nth-child(n+7):focus-visible .tooltip-text {
+    transform: translateY(0);
 }
 
 .theme-icon-sun {
@@ -498,8 +543,14 @@ body.dark-mode .hint-feedback-error {
     height: auto;
     min-width: 0;
     aspect-ratio: 1;
+    --cell-fill: var(--cell-background);
+    background: var(--cell-fill);
     border-right: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
+}
+
+.cell-shell.box-alternate {
+    --cell-fill: var(--alternate-box-background);
 }
 
 .sudoku-cell {
@@ -510,7 +561,7 @@ body.dark-mode .hint-feedback-error {
     padding: 0;
     border: 0;
     border-radius: 0;
-    background: var(--cell-background);
+    background: var(--cell-fill);
     color: var(--text-color);
     text-align: center;
     font-size: clamp(16px, 2.6vw, 21px);
@@ -582,7 +633,7 @@ body.dark-mode .hint-feedback-error {
 }
 
 .sudoku-cell.prefilled {
-    background: var(--prefilled-background);
+    background: color-mix(in srgb, var(--prefilled-background) 78%, var(--cell-fill));
     color: var(--prefilled-text);
     font-weight: 700;
 }
@@ -853,11 +904,16 @@ body.dark-mode #number-tracker-status.tracker-status-active {
     height: 100%;
     box-sizing: border-box;
     place-items: center;
+    --solver-cell-fill: var(--cell-background);
+    background: var(--solver-cell-fill);
     border-right: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
-    background: var(--cell-background);
     color: var(--text-color);
     font-size: clamp(16px, 2.5vw, 23px);
+}
+
+.solver-cell.box-alternate {
+    --solver-cell-fill: var(--alternate-box-background);
 }
 
 .solver-cell:nth-child(3),
@@ -871,17 +927,16 @@ body.dark-mode #number-tracker-status.tracker-status-active {
 }
 
 .solver-cell.solver-given {
-    background: var(--prefilled-background);
     font-weight: 700;
 }
 
 .solver-cell.solver-current {
-    background: var(--complete-background);
+    background: color-mix(in srgb, var(--complete-background) 78%, var(--solver-cell-fill));
     color: var(--complete-text);
 }
 
 .solver-cell.solver-backtrack {
-    background: var(--solver-backtrack-background);
+    background: color-mix(in srgb, var(--solver-backtrack-background) 78%, var(--solver-cell-fill));
 }
 
 .solver-board[hidden] {
@@ -985,6 +1040,68 @@ body.dark-mode #number-tracker-status.tracker-status-active {
 
     .side-controls select {
         max-width: 130px;
+    }
+
+    .side-controls .tooltip-text {
+        width: min(230px, calc(100vw - 40px));
+        box-sizing: border-box;
+    }
+
+    .side-controls:not(.action-controls) .tooltip-text {
+        right: 0;
+        left: auto;
+    }
+
+    .check-control-group .tooltip-text {
+        right: auto;
+        left: 0;
+    }
+
+    .game-toolbar .tooltip-text {
+        width: min(190px, calc(100vw - 32px));
+        box-sizing: border-box;
+    }
+
+    #note-mode-toggle .tooltip-text {
+        left: 0;
+        transform: translateY(-4px);
+    }
+
+    #note-mode-toggle:hover .tooltip-text,
+    #note-mode-toggle:focus-visible .tooltip-text {
+        transform: translateY(0);
+    }
+
+    #open-solver .tooltip-text {
+        right: 0;
+        left: auto;
+        transform: translateY(-4px);
+    }
+
+    #open-solver:hover .tooltip-text,
+    #open-solver:focus-visible .tooltip-text {
+        transform: translateY(0);
+    }
+
+    #solver-start .tooltip-text {
+        left: 0;
+        transform: translateY(-4px);
+    }
+
+    #solver-start:hover .tooltip-text,
+    #solver-start:focus-visible .tooltip-text {
+        transform: translateY(0);
+    }
+
+    #solver-reset .tooltip-text {
+        right: 0;
+        left: auto;
+        transform: translateY(-4px);
+    }
+
+    #solver-reset:hover .tooltip-text,
+    #solver-reset:focus-visible .tooltip-text {
+        transform: translateY(0);
     }
 
     .action-controls {

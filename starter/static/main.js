@@ -367,6 +367,9 @@ function createSolverBoard(initialBoard) {
     for (let col = 0; col < SIZE; col++) {
       const cell = document.createElement('div');
       cell.className = 'solver-cell';
+      if ((Math.floor(row / 3) + Math.floor(col / 3)) % 2 === 0) {
+        cell.classList.add('box-alternate');
+      }
       cell.dataset.row = String(row);
       cell.dataset.col = String(col);
       cell.setAttribute('role', 'gridcell');
@@ -696,6 +699,9 @@ function createBoardElement() {
     for (let col = 0; col < SIZE; col++) {
       const shell = document.createElement('div');
       shell.className = 'cell-shell';
+      if ((Math.floor(row / 3) + Math.floor(col / 3)) % 2 === 0) {
+        shell.classList.add('box-alternate');
+      }
       const input = document.createElement('input');
       input.type = 'text';
       input.maxLength = 1;
